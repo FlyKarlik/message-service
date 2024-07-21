@@ -1,9 +1,12 @@
 package server
 
 import (
+	_ "github.com/FlyKarlik/message-service/api/docs"
 	"github.com/FlyKarlik/message-service/internal/gateways/sync/http/synchandle"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func NewRouter(syncHandler *synchandle.SyncHandler) *gin.Engine {
@@ -17,7 +20,7 @@ func NewRouter(syncHandler *synchandle.SyncHandler) *gin.Engine {
 		AllowHeaders:     []string{"Origin", "Content-type"},
 	}))
 
-	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	api := router.Group("api")
 	api.Use(syncHandler.SetJSON)

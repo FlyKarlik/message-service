@@ -5,18 +5,32 @@ go 1.22.2
 require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/lib/pq v1.10.9
+	github.com/swaggo/files v1.0.1
+	github.com/swaggo/swag v1.16.3
 )
 
 require (
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
-	github.com/klauspost/compress v1.17.7 // indirect
+	github.com/KyleBanks/depth v1.2.1 // indirect
+	github.com/PuerkitoBio/purell v1.2.1 // indirect
+	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
+	github.com/go-openapi/jsonpointer v0.21.0 // indirect
+	github.com/go-openapi/jsonreference v0.21.0 // indirect
+	github.com/go-openapi/spec v0.21.0 // indirect
+	github.com/go-openapi/swag v0.23.0 // indirect
+	github.com/josharian/intern v1.0.0 // indirect
+	github.com/klauspost/compress v1.17.9 // indirect
+	github.com/knz/go-libedit v1.10.1 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
-	github.com/pierrec/lz4/v4 v4.1.15 // indirect
+	github.com/kr/text v0.2.0 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/pierrec/lz4/v4 v4.1.21 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/rogpeppe/go-internal v1.11.0 // indirect
+	github.com/rogpeppe/go-internal v1.12.0 // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	go.uber.org/atomic v1.11.0 // indirect
+	golang.org/x/tools v0.23.0 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
 require (
@@ -42,6 +56,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.2.2 // indirect
 	github.com/segmentio/kafka-go v0.4.47
 	github.com/sirupsen/logrus v1.9.3
+	github.com/swaggo/gin-swagger v1.6.0
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	github.com/ugorji/go/codec v1.2.12 // indirect
