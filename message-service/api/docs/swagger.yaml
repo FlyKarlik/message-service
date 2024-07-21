@@ -1,0 +1,264 @@
+basePath: /
+definitions:
+  domain.Message:
+    properties:
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      processed_at:
+        type: string
+      status:
+        type: integer
+    type: object
+  domain.Stats:
+    properties:
+      last_processed_message:
+        type: string
+      last_update:
+        type: string
+      processed_count:
+        type: integer
+    type: object
+  synchandle.addMessageRequest:
+    properties:
+      content:
+        type: string
+    required:
+    - content
+    type: object
+  synchandle.addMessageResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/domain.Message'
+      status:
+        type: string
+    type: object
+  synchandle.errorResponse:
+    properties:
+      code:
+        type: integer
+      error:
+        type: string
+      status:
+        type: string
+    type: object
+  synchandle.getAllMessageResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/domain.Message'
+        type: array
+      status:
+        type: string
+    type: object
+  synchandle.getMessageResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/domain.Message'
+      status:
+        type: string
+    type: object
+  synchandle.getProcessedMsgResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/domain.Message'
+        type: array
+      status:
+        type: string
+    type: object
+  synchandle.getStatsResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/domain.Stats'
+      status:
+        type: string
+    type: object
+host: 87.228.17.183:3000
+info:
+  contact: {}
+  description: API server for Message-service
+  title: Message-service
+  version: "1.0"
+paths:
+  /api/message/:
+    get:
+      consumes:
+      - application/json
+      description: get all messages (processed and unprocessed)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/synchandle.getAllMessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+      summary: GetAllMessage
+      tags:
+      - message
+    post:
+      consumes:
+      - application/json
+      description: add new message with content
+      parameters:
+      - description: message info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/synchandle.addMessageRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/synchandle.addMessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+      summary: AddMessage
+      tags:
+      - message
+  /api/message/{id}:
+    get:
+      consumes:
+      - application/json
+      description: add new message with content
+      parameters:
+      - description: message id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/synchandle.getMessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+      summary: AddMessage
+      tags:
+      - message
+  /api/message/processed/:
+    get:
+      consumes:
+      - application/json
+      description: get all processed messages
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/synchandle.getProcessedMsgResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+      summary: GetAllProcessedMessage
+      tags:
+      - message
+  /api/message/stats/:
+    get:
+      consumes:
+      - application/json
+      description: get statistics by processed messages
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/synchandle.getStatsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/synchandle.errorResponse'
+      summary: GetStats
+      tags:
+      - stats
+swagger: "2.0"
